@@ -16,7 +16,7 @@ def adjust_cores(cores,pattern):
     intersected_rules = find_intersected_rules(pattern, rules)
     # 2. for each intersected rule create rule partitions
     [partitions.append(create_rule_partitions(rule,pattern)) for rule in intersected_rules]
-    print('partitions')
+    print('these the partitions of the intersected rules: ')
     [print(partition) for partition in partitions]
     # 3. create all the combinations
     combinations = create_combinations_from_rule_partitions(partitions)
@@ -26,18 +26,41 @@ def adjust_cores(cores,pattern):
     volumes_of_the_combinations = partition_volumes(combinations) 
     print('volumes_of_the_combinations',volumes_of_the_combinations)
     index_of_max_volume = find_combination_with_maximum_volume(volumes_of_the_combinations)
-    print(combinations[index_of_max_volume])
+    result = combinations[index_of_max_volume]
+    print('....................................')
+    adjusted_cores = []
+    [adjusted_cores.append(rule) for combination in result for rule in combination if rule not in adjusted_cores]
+    print(adjusted_cores)
+    # Convert rules into  [ set, . . . set, class] format
 
-#rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
-#pattern = (8,5,'B')
-#rules = [ [{1,2}, {150},{0.721901},'1'],[{2},{100,200},{0.721901},'1'] ]
-#pattern = (   2, 120,  0.721901, '2')
-rules = [ [{8},{3,7},'A'] ]
-pattern =  (8,   5,  'B')
 
-rules = [ [{8},{3,7},'A'] ]
-pattern =  (8,  3,  'A')
+#    If the pattern intersects a core of different class, there are two possibilities:
+#    1. inside the core
+#    One dimension
+#Example 1
+rules = [ [{8},{3,5},'A'] ]
+pattern =  (8,   4,  'B')
+#Example 2
+rules = [ [{8},{3,5,7},'A'] ]
+pattern =  (8,   4,  'B')
+#    Two dimensions
+#Example 3
+rules = [ [{8,11},{3,5},'A'] ]
+pattern =  (9,   4,  'B')
+#Example 4
+rules = [ [{8,11,14},{3,5},'A'] ]
+pattern =  (9,   4,  'B')
+
+#    2. on the border
+#Example 5
+rules = [ [{8,10},{3,5,7},'A'] ]
+pattern =  (9,  3,  'B')
+
+# Two rules intersected by a new pattern inside the cores.
+#Example 6
+rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
+pattern = (8,5,'B')
+
 
 adjust_cores(rules,pattern) 
-
 
