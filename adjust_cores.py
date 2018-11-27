@@ -10,6 +10,7 @@ from create_rule_partitions import create_rule_partitions
 from create_combinations_from_rule_partitions import create_combinations_from_rule_partitions
 from partitions_volumes import partition_volumes
 from compare_partitions_volumes import find_combination_with_maximum_volume
+#If the pattern intersects a core with different class
 def adjust_cores(cores,pattern):
     partitions = []
     # 1. find intersected rules
@@ -27,9 +28,12 @@ def adjust_cores(cores,pattern):
     print('volumes_of_the_combinations',volumes_of_the_combinations)
     index_of_max_volume = find_combination_with_maximum_volume(volumes_of_the_combinations)
     print(combinations[index_of_max_volume])
- 
+
+
 rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
 pattern = (8,5,'B')
+#rules = [ [{1,2}, {150},{0.721901},'1'],[{2},{100,200},{0.721901},'1'] ]
+#pattern = (   2, 120,  0.721901, '2')
 adjust_cores(rules,pattern) 
 
 

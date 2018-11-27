@@ -60,3 +60,7 @@ def find_intersected_rules(pattern,rules):
 #pattern = (8,5,'B')
 #print(find_intersected_rules(pattern, rules))
 
+
+#rules = [ [{1, 2}, {150}, {0.721901},'1'],[{2},{100,200},{0.721901},'1'] ]
+#pattern = (   2, 120,  0.721901, '2')
+#print(find_intersected_rules(pattern,rules))

@@ -78,9 +78,21 @@ def fight(winner, contendent):
 #   and return the index of the bigest one
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+#def find_combination_with_maximum_volume(volumes_of_the_combinations):
+#    if volumes_of_the_combinations:
+#        maximum_volume = volumes_of_the_combinations[0]
+#    for i in range(len(volumes_of_the_combinations)):
+#        maximum_volume = fight(maximum_volume,volumes_of_the_combinations[i])
+#    for i, j in enumerate(volumes_of_the_combinations):
+#        if j == maximum_volume:
+#            index = i
+#    print(i)
+#    return i
 def find_combination_with_maximum_volume(volumes_of_the_combinations):
     if volumes_of_the_combinations:
         maximum_volume = volumes_of_the_combinations[0]
+    if len(volumes_of_the_combinations)==1:
+        return 0
     for i in range(len(volumes_of_the_combinations)):
         maximum_volume = fight(maximum_volume,volumes_of_the_combinations[i])
     for i, j in enumerate(volumes_of_the_combinations):
@@ -88,5 +100,5 @@ def find_combination_with_maximum_volume(volumes_of_the_combinations):
             index = i
     print(i)
     return i
-find_combination_with_maximum_volume([[[0, 0], [4, 1]], [[0, 0], [8, 1]]])
+#find_combination_with_maximum_volume([[[0, 0], [4, 1]], [[0, 0], [8, 1]]])
 
