@@ -52,7 +52,7 @@ rules = [ [{8,11,14},{3,5},'A'] ]
 pattern =  (9,   4,  'B')
 
 #    2. on the border
-#Example 5
+#Example 5 -- note that the rule is cut by one of the two dimensions
 rules = [ [{8,10},{3,5,7},'A'] ]
 pattern =  (9,  3,  'B')
 
