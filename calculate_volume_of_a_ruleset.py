@@ -94,9 +94,9 @@ def sort_volumes(volumes):
 def volume_of_the_ruleset(rules):
     volumes = []
     for rule in rules:
-        print(rule)
+#        print(rule)
         volume = rule_volume(rule)
-        print('aportacion de la regla', volume)
+#        print('aportacion de la regla', volume)
         volumes = volumes + [volume]
 #    print('volumes',volumes)
     volumes = sum_equal_dimensions(volumes)
@@ -104,13 +104,3 @@ def volume_of_the_ruleset(rules):
     return volumes
 #print(partition_volume([[(12,), {10, 13}, 'B'], [{11, 13}, {11, 13}, 'D'], [{12,13},(10,),'B'] ]))
 #print(volume_of_the_ruleset( [[(6,), {4, 6}, 'A'], [(8,), 5, 'B'], [(10,), {4, 6}, 'A'], [{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A'] ] ) )
-
-
-
-
-
-
-
-
-
-

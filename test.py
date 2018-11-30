@@ -3,6 +3,8 @@ import sys
 from find_intersected_rules import find_intersected_rules
 from create_rule_partitions import create_rule_partitions
 from create_combinations_from_rule_partitions import create_combinations_from_rule_partitions
+from partitions_volumes import partition_volumes
+from compare_partitions_volumes import find_combination_with_maximum_volume
 
 def test(l):
     l()
@@ -47,9 +49,28 @@ test(xxx)
 def xxx():
     partitions =  [[[[(6,), {4, 6}, 'A'], [(8,), 5, 'B'], [(10,), {4, 6}, 'A']], [[{10, 6}, (4,), 'A'], [8, (5,), 'B'], [{10, 6}, (6,), 'A']]], [[[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']]]]
   
-    assert create_combinations_from_rule_partitions(partitions) == [([[(6,), {4, 6}, 'A'], [(8,), 5, 'B'], [(10,), {4, 6}, 'A']], [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']]), ([[{10, 6}, (4,), 'A'], [8, (5,), 'B'], [{10, 6}, (6,), 'A']], [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']])]
- 
+    assert create_combinations_from_rule_partitions(partitions) == [([[(6,), {4, 6}, 'A'], [(8,), 5, 'B'], [(10,), {4, 6}, 'A']], [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']]), ([[{10, 6}, (4,), 'A'], [8, (5,), 'B'], [{10, 6}, (6,), 'A']], [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']])] 
 test(xxx)
+
+def xxx():
+    
+    combinations = [(
+        [[(6,), {4, 6}, 'A'], [(8,), 5, 'B'], [(10,), {4, 6}, 'A']],
+        [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']]
+        ),
+        ([[{10, 6}, (4,), 'A'], [8, (5,), 'B'], [{10, 6}, (6,), 'A']],
+            [[{8}, (3,), 'A'], [8, (5,), 'B'], [{8}, (7,), 'A']]
+            )]
+    assert partition_volumes(combinations) == [[[0, 0], [4, 1]], [[0, 0], [8, 1]]]
+test(xxx)
+
+def xxx():
+    volumes_of_the_combinations = [[[0, 0], [4, 1]], [[0, 0], [8, 1]]]
+    assert find_combination_with_maximum_volume(volumes_of_the_combinations) == 1
+test (xxx)
+
+
+
 
 
 

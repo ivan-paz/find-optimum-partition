@@ -98,7 +98,5 @@ def find_combination_with_maximum_volume(volumes_of_the_combinations):
     for i, j in enumerate(volumes_of_the_combinations):
         if j == maximum_volume:
             index = i
-    print(i)
     return i
-#find_combination_with_maximum_volume([[[0, 0], [4, 1]], [[0, 0], [8, 1]]])
 

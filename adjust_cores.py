@@ -16,23 +16,23 @@ def adjust_cores(cores,pattern):
     intersected_rules = find_intersected_rules(pattern, rules)
     # 2. for each intersected rule create rule partitions
     [partitions.append(create_rule_partitions(rule,pattern)) for rule in intersected_rules]
-    print('these the partitions of the intersected rules: ')
-    [print(partition) for partition in partitions]
+    #print('these the partitions of the intersected rules: ')
+    #[print(partition) for partition in partitions]
     # 3. create all the combinations
     combinations = create_combinations_from_rule_partitions(partitions)
-    print('C O M B I N A T I O N S','\n',combinations)
+    #print('C O M B I N A T I O N S of the partitions ','\n',combinations)
     # 4. find the combination with maximum volume
     # 4.1 calculate the volume of each combination
     volumes_of_the_combinations = partition_volumes(combinations) 
-    print('volumes_of_the_combinations',volumes_of_the_combinations)
+    #print('volumes_of_the_combinations',volumes_of_the_combinations)
     index_of_max_volume = find_combination_with_maximum_volume(volumes_of_the_combinations)
     result = combinations[index_of_max_volume]
-    print('....................................')
+    #print('....................................')
     adjusted_cores = []
     [adjusted_cores.append(rule) for combination in result for rule in combination if rule not in adjusted_cores]
     print(adjusted_cores)
     # Convert rules into  [ set, . . . set, class] format
-
+    return adjusted_cores
 
 #    If the pattern intersects a core of different class, there are two possibilities:
 #    1. inside the core
