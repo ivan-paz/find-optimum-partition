@@ -10,6 +10,11 @@ from create_rule_partitions import create_rule_partitions
 from create_combinations_from_rule_partitions import create_combinations_from_rule_partitions
 from partitions_volumes import partition_volumes
 from compare_partitions_volumes import find_combination_with_maximum_volume
+
+def Diff(li1, li2): 
+        li_dif = [i for i in li1 + li2 if i not in li1 or i not in li2] 
+        return li_dif
+
 def adjust_cores(cores,pattern):
     partitions = []
     # 1. find intersected rules
@@ -30,9 +35,13 @@ def adjust_cores(cores,pattern):
     #print('....................................')
     adjusted_cores = []
     [adjusted_cores.append(rule) for combination in result for rule in combination if rule not in adjusted_cores]
-    print(adjusted_cores)
-    # Convert rules into  [ set, . . . set, class] format
-    return adjusted_cores
+#    print(adjusted_cores)
+    # add to the result the cores that were not affected
+    result = Diff(cores,intersected_rules)
+#    print(result)
+    [result.append(c) for c in adjusted_cores]
+#    print(result)
+    return result
 
 #    If the pattern intersects a core of different class, there are two possibilities:
 #    1. inside the core
@@ -60,6 +69,13 @@ pattern =  (9,  3,  'B')
 #Example 6
 rules = [[{6,10},{4,6},'A'],[{8},{3,7},'A']]
 pattern = (8,5,'B')
+
+#Example 7 (not on the notebook)
+#  an intersected rule of different class and a non intersected rule
+rules = [ [{8},{3,5},'A'], [{2},{6},'A'] ]
+pattern =  (8,   4,  'B')
+
+
 
 
 adjust_cores(rules,pattern) 
